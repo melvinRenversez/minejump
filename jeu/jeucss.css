@@ -3,7 +3,7 @@
     padding: 0;
 }
 body{
-    background: url(img/montagne.jpg);
+    background: url(../img/montagne.jpg);
 }
 .timer{
     position: absolute;
@@ -13,7 +13,7 @@ body{
 }
 .steve{
     position: absolute;
-    background-image: url(img/steve.png);
+    background-image: url(../img/steve.png);
     height: 178px;
     width: 46px;
     bottom: 21%;

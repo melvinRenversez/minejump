@@ -6,10 +6,8 @@ var enemy = document.createElement("div");
 var time = 0;
 var isJumping = false;
 var isAttacking = false;
+var isDead = false;
 var speedAttack = 3;
-
-steve.style.border = "1px solid black";
-enemy.style.border = "1px solid black";
 
 
 document.addEventListener("keydown", function(event){
@@ -25,23 +23,47 @@ document.addEventListener("keydown", function(event){
 })
 
 function enemyAttack(){
+    if (isDead){
+        return;
+    }
     enemy.style.height = "165px";
     enemy.style.width = "43px";
-    enemy.style.background = "url(img/zombie.png) no-repeat";
+    enemy.style.background = "url(../img/zombie.png) no-repeat";
     enemy.style.position = "absolute";
     enemy.style.left = "97%";
     enemy.style.bottom = "21%";
     body.appendChild(enemy);
+
     if (!isAttacking){
         void steve.offsetWidth; 
         isAttacking = true;
         enemy.style.animation = "attack " + speedAttack + "s linear";
         setTimeout(function(){
+            if (isDead){
+                return;
+            }
             isAttacking = false;
             enemy.remove();
             enemyAttack();
         }, speedAttack * 1000);
     }
+
+    function checkCollision(){
+        if (Colliding()) {
+            console.log("Collision");
+            enemy.style.left = enemy.getBoundingClientRect().left + "px";
+            steve.style.animation = "none";
+            enemy.style.animation = "none";
+            isAttacking = false;
+            isDead = true;
+            steve.remove();
+            return;
+        }
+        requestAnimationFrame(checkCollision);
+    }
+
+    checkCollision();
+
 }
 
 function Colliding(){
@@ -56,24 +78,21 @@ function Colliding(){
 }
 
 function updateTime(){
+    if (isDead){
+        return;
+    }
     timeText.textContent = time;
 
     if (time >= 20){
-        body.style.background = "url(img/sunset.jpg) no-repeat";
+        body.style.background = "url(../img/sunset.jpg) no-repeat";
         body.style.backgroundSize= "cover";
     }
      
     setTimeout(function(){
-        time += 1; 
+        time ++; 
         updateTime();
     }, 1000);
 }
-
-setInterval(function () {
-    if (Colliding()) {
-        alert("Game Over");
-    }
-}, 16);
 
 updateTime();
 enemyAttack();
