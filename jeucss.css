@@ -31,9 +31,17 @@ body{
         transform: translateY(0);
     }
     50%{
-        transform: translateY(-200px);
+        transform: translateY(-300px);
     }
     100%{
         transform: translateY(0);
+    }
+}
+@keyframes attack {
+    0%{
+        transform: translateX(0)
+    }
+    100%{
+        left: 2%;
     }
 }
