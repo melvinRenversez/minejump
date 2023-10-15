@@ -1,7 +1,9 @@
 var body = document.body;
 var timeText = document.getElementById("time");
 var steve = document.getElementById("steve");
-var enemy = document.createElement("div");  
+var enemy = document.createElement("div");
+var gameOverArea = document.getElementById("gameOver");  
+var scoreText = document.getElementById("score");
 
 var time = 0;
 var isJumping = false;
@@ -28,7 +30,7 @@ function enemyAttack(){
     }
     enemy.style.height = "165px";
     enemy.style.width = "43px";
-    enemy.style.background = "url(../img/zombie.png) no-repeat";
+    enemy.style.background = "url(../img/entity/zombie.png) no-repeat";
     enemy.style.position = "absolute";
     enemy.style.left = "97%";
     enemy.style.bottom = "21%";
@@ -56,7 +58,8 @@ function enemyAttack(){
             enemy.style.animation = "none";
             isAttacking = false;
             isDead = true;
-            steve.remove();
+            steve.style.visibility = "hidden";
+            gameOver();
             return;
         }
         requestAnimationFrame(checkCollision);
@@ -84,14 +87,36 @@ function updateTime(){
     timeText.textContent = time;
 
     if (time >= 20){
-        body.style.background = "url(../img/sunset.jpg) no-repeat";
+        body.style.background = "url(../img/background/sunset.jpg) no-repeat";
+        body.style.backgroundSize= "cover";
+    }
+    if (time >= 40){
+        body.style.background = "url(../img/background/ender-dragon.jpg) no-repeat";
         body.style.backgroundSize= "cover";
     }
      
     setTimeout(function(){
-        time ++; 
+        time += 10; 
         updateTime();
     }, 1000);
+}
+
+
+function gameOver(){
+    gameOverArea.style.visibility = "visible";
+    scoreText.innerHTML = "Votre score est de " + time;
+}
+
+function restart(){
+    time = 0;
+    isJumping = false;
+    isAttacking = false;
+    isDead = false;
+    speedAttack = 3;
+    gameOverArea.style.visibility = "hidden";
+    steve.style.visibility = "visible";
+    enemyAttack();
+    updateTime();
 }
 
 updateTime();

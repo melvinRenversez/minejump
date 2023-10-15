@@ -3,7 +3,7 @@
     padding: 0;
 }
 body{
-    background: url(../img/montagne.jpg);
+    background: url(../img/background/montagne.jpg);
 }
 .timer{
     position: absolute;
@@ -13,7 +13,7 @@ body{
 }
 .steve{
     position: absolute;
-    background-image: url(../img/steve.png);
+    background-image: url(../img/entity/steve.png);
     height: 178px;
     width: 46px;
     bottom: 21%;
@@ -44,4 +44,50 @@ body{
     100%{
         left: 2%;
     }
+}
+
+
+
+
+
+.gameOver{
+    position: absolute;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    left: calc(50% - 354px/2);
+    top: calc(50% - 161px/2);
+    padding: 5px;
+    visibility: hidden ;
+}
+.text{
+    color: white;
+    font-size: 40px;
+}
+.allButton{
+    padding: 5px;
+}
+button{
+    border: 1px solid #000;
+    background-color: #555555;
+    color: white ;
+    padding: 5px;
+    margin: 10px;
+    font-size: 15px;
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+button:hover{
+    transition: 1s;
+    transform: scale(1.1);
+}
+.score{
+    font-size: 30px;
+    color: white;
+    padding: 5px;
 }
