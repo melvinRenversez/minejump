@@ -96,7 +96,7 @@ function updateTime(){
     }
      
     setTimeout(function(){
-        time += 10; 
+        time ++; 
         updateTime();
     }, 1000);
 }
