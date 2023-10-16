@@ -167,6 +167,9 @@ function scoreBoard(){
         var scores = [localStorage.getItem("score1"), localStorage.getItem("score2"), localStorage.getItem("score3"), localStorage.getItem("score4"), localStorage.getItem("score5")];
     
         for (var i = 0; i < 5; i++) {
+            if (scores[i] === null){
+                scores[i] = "0";
+            }
             if (score > scores[i]) {
                 // Décaler les scores existants vers le bas
                 for (var j = 4; j > i; j--) {
@@ -184,6 +187,7 @@ function scoreBoard(){
             }
         }
         boardUpdated = true;
+         
     }
 }
 
