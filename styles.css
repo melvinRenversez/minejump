@@ -11,14 +11,19 @@ video{
     object-fit: cover;
     z-index: -1;
 }
-button{
+div{
     position: absolute;
-    left: calc(50% - 75px);
-    top: calc(50% - 20px);
+    left: calc(50% - 85px);
+    top: calc(50% - 60px);
+    display: flex;
+    flex-direction: column;
+}
+button{
     border: 1px solid #000;
     background-color: #555555;
     color: white ;
     padding: 5px;
+    margin: 10px;
     font-size: 15px;
     height: 40px;
     width: 150px;
